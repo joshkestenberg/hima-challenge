@@ -1,0 +1,3 @@
+class ClockEvent < ApplicationRecord
+  
+end
