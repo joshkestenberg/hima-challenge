@@ -13,7 +13,7 @@ class ClockEventsController < ApplicationController
 
     # If a user has prior clock events, and the last clock event doesn't have a time out,
     # we know to punch out. In all other instances, we're punching in.
-    @punch_out = @clock_events.present? && @clock_events.last.time_out.nil?
+    @punch_out = ClockEvent.punch_out?(@name)
 
     # If we are punching out, we need to update the user's last clock event, whereas if we're
     # punching in, we'll need to create a new clock event
@@ -35,7 +35,7 @@ class ClockEventsController < ApplicationController
     @clock_event.time_in = DateTime.now
 
     if @clock_event.save
-      reset_clock_event_vars(:create, @clock_event)
+      reset_clock_event_vars(@clock_event)
       render_updated_clock_events
     end
   end
@@ -45,7 +45,7 @@ class ClockEventsController < ApplicationController
     @clock_event.time_out = DateTime.now
 
     if @clock_event.save
-      reset_clock_event_vars(:update, @clock_event)
+      reset_clock_event_vars(@clock_event)
       render_updated_clock_events
     end
   end
@@ -60,24 +60,17 @@ class ClockEventsController < ApplicationController
       params.require(:clock_event).permit(:name)
     end
 
-    def reset_clock_event_vars(parent_action, clock_event)
+    def reset_clock_event_vars(clock_event)
       @name = clock_event.name
       @clock_events = ClockEvent.user_last_ten(@name)
-      # we don't want jquery animation when rerendering punch clock
+      @punch_out = ClockEvent.punch_out?(@name)
+
+      # we don't want jquery animation when re-rendering punch clock
       @animate = false
 
-      case parent_action
-      when :create
-        # set punch_out to true as we just punched in, and reset clock_event variables
-        @punch_out = true
-        # next clock event will be a clock out, so we need to reset clock event var to user's last saved object
-        @clock_event = @clock_events.last
-      when :update
-        # reset punch_out to false as we just punched out, and reset clock_event variables
-        @punch_out = false
-        # next clock event will be a clock in, so we need to reset clock event var to a new object
-        @clock_event = ClockEvent.new
-      end
+      # If we are punching out, we need to update the user's last clock event, whereas if we're
+      # punching in, we'll need to create a new clock event
+      @clock_event = @punch_out ? @clock_events.last : ClockEvent.new
 
     end
 

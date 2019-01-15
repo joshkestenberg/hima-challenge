@@ -1,5 +1,15 @@
 class ClockEvent < ApplicationRecord
-  scope :user_last_ten, ->(name) {where(name: name).order(time_in: :DESC).limit(10).reverse}
+  validates :name, :time_in, presence: true
+
+  scope :user_last_ten, ->(name) {user_events(name).order(time_in: :DESC).limit(10).reverse}
+
+  def self.punch_out?(name)
+    user_events(name).present? && user_events(name).last.time_out.nil?
+  end
+
+  def self.user_events(name)
+    where(name: name)
+  end
 
   def self.sort(sort_by)
     case sort_by
