@@ -23,7 +23,15 @@ class ClockEventsController < ApplicationController
   end
 
   def index
-    @clock_events = ClockEvent.all
+    case params[:sort_by]
+    when "name"
+      @clock_events = ClockEvent.all.order(name: :ASC)
+    when "clock_out"
+      @clock_events = ClockEvent.all.order(time_out: :ASC)
+    else
+      # clock_in just falls to the default case; no need for its own case
+      @clock_events = ClockEvent.all.order(time_in: :ASC)
+    end
   end
 
   def create

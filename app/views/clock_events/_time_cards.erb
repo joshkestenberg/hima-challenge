@@ -1,8 +1,8 @@
 <div class="main--index">
   <div class="main--index--headers">
-    <p class="main--index--headers--header main--index--headers--header--name">Name</p>
-    <p class="main--index--headers--header main--index--headers--header--in">Time In</p>
-    <p class="main--index--headers--header main--index--headers--header--out">Time Out</p>
+    <p class="main--index--headers--header main--index--headers--header--name"><%= link_to "Name", clock_events_path(sort_by: "name") %></p>
+    <p class="main--index--headers--header main--index--headers--header--in"><%= link_to "Time In", clock_events_path(sort_by: "time_in") %></p>
+    <p class="main--index--headers--header main--index--headers--header--out"><%= link_to "Time Out", clock_events_path(sort_by: "time_out") %></p>
   </div>
   <div class="main--index--entries">
     <% clock_events.each do |clock_event| %>

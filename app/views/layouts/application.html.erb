@@ -20,6 +20,7 @@
       <%= yield %>
       <%= console %>
 
+      <!-- This function pulls the timezone from the user's browser and sets a cookie with that information -->
       <script type="text/javascript">
         $(function(){
           var tz = jstz.determine();
