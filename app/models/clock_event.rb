@@ -5,10 +5,10 @@ class ClockEvent < ApplicationRecord
     case sort_by
     when "name"
       ClockEvent.all.order(name: :ASC)
-    when "clock_out"
+    when "time_out"
       ClockEvent.all.order(time_out: :ASC)
     else
-      # clock_in just falls to the default case; no need for its own case
+      # time_in just falls to the default case; no need for its own case
       ClockEvent.all.order(time_in: :ASC)
     end
   end

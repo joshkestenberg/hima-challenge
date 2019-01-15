@@ -109,3 +109,150 @@ body {
     font-size: 20px;
   }
 }
+
+// responsive design
+
+@media only screen and (min-width: 1500px) {
+  .main{
+    &--home{
+      &--search{
+        width: 50%;
+        margin-left: 25%;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 900px) and (max-width: 1250px) {
+  .main{
+    &--home{
+      &--search{
+        width: 60%;
+        margin-left: 20%;
+        &--input{
+          width: 70%;
+        }
+        &--button{
+          width: 20%;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 650px) and (max-width: 899px) {
+  .main{
+    &--home{
+      &--search{
+        width: 60%;
+        margin-left: 20%;
+        &--input{
+          width: 65%;
+        }
+        &--button{
+          width: 20%;
+        }
+      }
+      &--results{
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+  }
+
+  .header{
+    &--clock{
+      zoom: 0.7;
+      -moz-transform: scale(0.7);
+    }
+  }
+}
+
+@media only screen and (min-width: 550px) and (max-width: 649px) {
+  .main{
+    &--home{
+      &--search{
+        width: 80%;
+        margin-left: 10%;
+        &--input{
+          width: 65%;
+        }
+        &--button{
+          width: 20%;
+        }
+      }
+      &--results{
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+  }
+
+  .header{
+    &--title{
+      &--text{
+        font-size: 50px;
+        span img{
+          width: 30px;
+          position: relative;
+          top: 2px;
+        }
+      }
+    }
+    &--clock{
+      zoom: 0.5;
+      -moz-transform: scale(0.5);
+    }
+  }
+}
+
+@media only screen and (min-width: 300px) and (max-width: 549px) {
+  body {
+    padding-top: 5em;
+    width: 100%;
+    margin-left: 0;
+  }
+  .main{
+    &--home{
+      &--search{
+        width: 100%;
+        margin-left: 0%;
+        font-size: 15px;
+        &--input{
+          width: 60%;
+          padding: 0.3em;
+        }
+        &--button{
+          width: 30%;
+          padding: 0.3em;
+        }
+      }
+      &--results{
+        width: 100%;
+        margin-left: 0;
+        font-size: 0.8em;
+      }
+    }
+    &--punch-button{
+      padding: 0.3em;
+      font-size: 15px;
+    }
+  }
+
+  .header{
+    &--title{
+      &--text{
+        font-size: 50px;
+        span img{
+          width: 30px;
+          position: relative;
+          top: 2px;
+        }
+      }
+    }
+    &--clock{
+      zoom: 0.4;
+      -moz-transform: scale(0.4);
+    }
+  }
+}
