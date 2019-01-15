@@ -20,5 +20,11 @@
         $('[data-submit]').prop('disabled', true)
       }
     })
+
+    if(!$('[data-submit]').hasClass('main--home--search--button--enabled')){
+      $(this).submit(function(){
+        event.preventDefault()
+      })
+    }
   })
 </script>
