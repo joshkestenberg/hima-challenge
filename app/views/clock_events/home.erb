@@ -1,10 +1,24 @@
 <div class="main--home">
   <div class="main--home--search">
     <%= form_with url: punch_clock_path, method: 'get', remote: true do |f| %>
-      <%= f.text_field :name, placeholder: "Enter your full name", class: 'main--home--search--input' %>
-      <%= f.submit 'Go!', class: 'main--home--search--button' %>
+      <%= f.text_field :name, placeholder: "Enter your full name", class: 'main--home--search--input', :'data-search-target' => "" %>
+      <%= f.submit 'Go!', class: 'main--home--search--button', disabled: true, :'data-submit' => "" %>
     <% end %>
   </div>
   <div class="main--home--results">
   </div>
 </div>
+
+<script type="text/javascript">
+  $(function(){
+    $('[data-search-target]').keyup(function(){
+      if($(this).val().length > 0){
+        $('[data-submit]').addClass('main--home--search--button--enabled')
+        $('[data-submit]').prop('disabled', false)
+      } else {
+        $('[data-submit]').removeClass('main--home--search--button--enabled')
+        $('[data-submit]').prop('disabled', true)
+      }
+    })
+  })
+</script>

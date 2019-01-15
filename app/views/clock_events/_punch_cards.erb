@@ -1,4 +1,9 @@
 <div class="main--index">
+  <div class="main--index--nav" data-clear-target="">
+    <% if @parent_action != :index %>
+      <%= image_tag 'x.png', class: 'main--index--nav--x' %>
+    <% end %>
+  </div>
   <table class="main--index--timetable">
     <tr class="main--index--timetable--headers">
       <% if @parent_action == :index %>
@@ -18,3 +23,14 @@
     <% end %>
   </table>
 </div>
+
+<script type="text/javascript">
+  $(function(){
+    $('[data-clear-target]').click(function(){
+      $('.main--home--results').slideUp(600, function(){
+        $('.main--home--results').empty();
+      });
+      $('.main--home--search--input').val('')
+    })
+  })
+</script>

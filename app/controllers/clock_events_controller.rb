@@ -8,6 +8,8 @@ class ClockEventsController < ApplicationController
   def punch_clock
     @name = search_params[:name]
     @clock_events = ClockEvent.user_last_ten(@name)
+    # using a variable to determine whether or not to use jQuery animation
+    @animate = true
 
     # If a user has prior clock events, and the last clock event doesn't have a time out,
     # we know to punch out. In all other instances, we're punching in.
@@ -61,6 +63,8 @@ class ClockEventsController < ApplicationController
     def reset_clock_event_vars(parent_action, clock_event)
       @name = clock_event.name
       @clock_events = ClockEvent.user_last_ten(@name)
+      # we don't want jquery animation when rerendering punch clock
+      @animate = false
 
       case parent_action
       when :create
