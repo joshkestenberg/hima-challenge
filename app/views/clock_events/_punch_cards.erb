@@ -7,10 +7,10 @@
   <table class="main--index--timetable">
     <tr class="main--index--timetable--headers">
       <% if @parent_action == :index %>
-        <th class="main--index--timetable--headers--header main--index--headers--header--name"><%= link_to "Name", clock_events_path(sort_by: "name") %></th>
+        <th class="main--index--timetable--headers--header main--index--headers--header--name"><%= link_to "Name", admin_path(sort_by: "name") %></th>
       <% end %>
-      <th class="main--index--timetable--headers--header main--index--headers--header--in"><%= @parent_action == :index ? ( link_to "Time In", clock_events_path(sort_by: "time_in") ) : "Time In" %></th>
-      <th class="main--index--timetable--headers--header main--index--headers--header--out"><%= @parent_action == :index ? ( link_to "Time Out", clock_events_path(sort_by: "time_out") ) : "Time Out" %></th>
+      <th class="main--index--timetable--headers--header main--index--headers--header--in"><%= @parent_action == :index ? ( link_to "Time In", admin_path(sort_by: "time_in") ) : "Time In" %></th>
+      <th class="main--index--timetable--headers--header main--index--headers--header--out"><%= @parent_action == :index ? ( link_to "Time Out", admin_path(sort_by: "time_out") ) : "Time Out" %></th>
     </tr>
     <% clock_events.each_with_index do |clock_event, i| %>
       <tr class="main--index--timetable--entry <%= 'main--index--timetable--entry--white' if i.even? %>">
