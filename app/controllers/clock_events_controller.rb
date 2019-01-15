@@ -6,7 +6,7 @@ class ClockEventsController < ApplicationController
   end
 
   def punch_clock
-    @name = search_params[:name]
+    @name = search_params[:name].downcase
     @clock_events = ClockEvent.user_last_ten(@name)
     # using a variable to determine whether or not to use jQuery animation
     @animate = true

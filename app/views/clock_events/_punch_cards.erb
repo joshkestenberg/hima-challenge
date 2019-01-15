@@ -15,7 +15,7 @@
     <% clock_events.each_with_index do |clock_event, i| %>
       <tr class="main--index--timetable--entry <%= 'main--index--timetable--entry--white' if i.even? %>">
         <% if @parent_action == :index %>
-          <td class="main--index--timetable--entry--data main--index--timetable--entry--data--name"><%= clock_event.name %></p>
+          <td class="main--index--timetable--entry--data main--index--timetable--entry--data--name"><%= clock_event.name.titleize %></p>
         <% end %>
         <td class="main--index--timetable--entry--data main--index--timetable--entry--data--in"><%= pretty_time(clock_event.time_in) %></p>
         <td class="main--index--timetable--entry--data main--index--timetable--entry--data--out"><%= clock_event.time_out ? pretty_time(clock_event.time_out) : "Ongoing.." %></p>
