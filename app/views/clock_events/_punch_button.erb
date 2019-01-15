@@ -1,0 +1,7 @@
+<%= form_for clock_event, remote: true do |f| %>
+  <!-- send name in form only if creating a new clock event (ie. if clocking in, and not clocking out) -->
+  <% unless @punch_out %>
+    <%= (f.hidden_field :name, value: name) %>
+  <% end %>
+  <%= f.submit "#{@punch_out ? 'Punch Out' : 'Punch In'}" %>
+<% end %>

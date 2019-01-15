@@ -1,0 +1,16 @@
+<div class="main--index">
+  <div class="main--index--headers">
+    <p class="main--index--headers--header main--index--headers--header--name">Name</p>
+    <p class="main--index--headers--header main--index--headers--header--in">Time In</p>
+    <p class="main--index--headers--header main--index--headers--header--out">Time Out</p>
+  </div>
+  <div class="main--index--entries">
+    <% clock_events.each do |clock_event| %>
+      <div class="main--index--entries--entry">
+        <p class="main--index--entries--entry--name"><%= clock_event.name %></p>
+        <p class="main--index--entries--entry--in"><%= clock_event.time_in %></p>
+        <p class="main--index--entries--entry--out"><%= clock_event.time_out %></p>
+      </div>
+    <% end %>
+  </div>
+</div>

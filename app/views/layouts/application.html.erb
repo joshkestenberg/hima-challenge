@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>HimamaChallenge</title>
+    <title>Punch Clock</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +9,13 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="main">
+      <div class="main--clock-container">
+        <% render "clock" %>
+      </div>
+
+      <%= yield %>
+      
+    </div>
   </body>
 </html>
