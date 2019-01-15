@@ -1,0 +1,20 @@
+<div class="main--index">
+  <table class="main--index--timetable">
+    <tr class="main--index--timetable--headers">
+      <% if @parent_action == :index %>
+        <th class="main--index--timetable--headers--header main--index--headers--header--name"><%= link_to "Name", clock_events_path(sort_by: "name") %></th>
+      <% end %>
+      <th class="main--index--timetable--headers--header main--index--headers--header--in"><%= @parent_action == :index ? ( link_to "Time In", clock_events_path(sort_by: "time_in") ) : "Time In" %></th>
+      <th class="main--index--timetable--headers--header main--index--headers--header--out"><%= @parent_action == :index ? ( link_to "Time Out", clock_events_path(sort_by: "time_out") ) : "Time Out" %></th>
+    </tr>
+    <% clock_events.each_with_index do |clock_event, i| %>
+      <tr class="main--index--timetable--entry <%= 'main--index--timetable--entry--white' if i.even? %>">
+        <% if @parent_action == :index %>
+          <td class="main--index--timetable--entry--data main--index--timetable--entry--data--name"><%= clock_event.name %></p>
+        <% end %>
+        <td class="main--index--timetable--entry--data main--index--timetable--entry--data--in"><%= pretty_time(clock_event.time_in) %></p>
+        <td class="main--index--timetable--entry--data main--index--timetable--entry--data--out"><%= clock_event.time_out ? pretty_time(clock_event.time_out) : "Ongoing.." %></p>
+      </tr>
+    <% end %>
+  </table>
+</div>

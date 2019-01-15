@@ -7,7 +7,7 @@ class ClockEventsController < ApplicationController
 
   def punch_clock
     @name = search_params[:name]
-    @clock_events = ClockEvent.where(name: @name)
+    @clock_events = ClockEvent.user_last_ten(@name)
 
     # If a user has prior clock events, and the last clock event doesn't have a time out,
     # we know to punch out. In all other instances, we're punching in.
@@ -23,15 +23,9 @@ class ClockEventsController < ApplicationController
   end
 
   def index
-    case params[:sort_by]
-    when "name"
-      @clock_events = ClockEvent.all.order(name: :ASC)
-    when "clock_out"
-      @clock_events = ClockEvent.all.order(time_out: :ASC)
-    else
-      # clock_in just falls to the default case; no need for its own case
-      @clock_events = ClockEvent.all.order(time_in: :ASC)
-    end
+    @parent_action = :index
+
+    @clock_events = ClockEvent.sort(params[:sort_by])
   end
 
   def create
@@ -64,11 +58,11 @@ class ClockEventsController < ApplicationController
       params.require(:clock_event).permit(:name)
     end
 
-    def reset_clock_event_vars(parent_method, clock_event)
+    def reset_clock_event_vars(parent_action, clock_event)
       @name = clock_event.name
-      @clock_events = ClockEvent.where(name: @name)
+      @clock_events = ClockEvent.user_last_ten(@name)
 
-      case parent_method
+      case parent_action
       when :create
         # set punch_out to true as we just punched in, and reset clock_event variables
         @punch_out = true

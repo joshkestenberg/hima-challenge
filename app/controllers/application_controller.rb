@@ -3,6 +3,6 @@ class ApplicationController < ActionController::Base
   helper_method :pretty_time
 
   def pretty_time(datetime)
-    datetime.in_time_zone(cookies[:timezone]).strftime('%b %-d, %Y %I:%M:%S %p')
+    datetime.in_time_zone(cookies[:timezone]).strftime('%b %-d %Y %-I:%M %p')
   end
 end

@@ -3,5 +3,5 @@
   <% unless @punch_out %>
     <%= (f.hidden_field :name, value: name) %>
   <% end %>
-  <%= f.submit "#{@punch_out ? 'Punch Out' : 'Punch In'}" %>
+  <%= f.submit "#{@punch_out ? 'Punch Out' : 'Punch In'}", class: 'main--punch-button' %>
 <% end %>

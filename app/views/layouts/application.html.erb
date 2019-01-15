@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Punch Clock</title>
+    <title>Clocker.</title>
     <%= csrf_meta_tags %>
 
+    <link rel="icon" type="image/png" sizes="32x32" href="<%= image_path("favicon.ico") %>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <div class="header">
+      <div class="header--title">
+        <p class="header--title--text">Cl<span class="header--title--text--o"><%= image_tag "clock.png" %></span>cker.</p>
+      </div>
+      <%= render "clock" %>
+    </div>
+
     <div class="main">
       <script src="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.js"></script>
-
-      <div class="main--clock-container">
-        <%= render "clock" %>
-      </div>
 
       <%= yield %>
       <%= console %>
