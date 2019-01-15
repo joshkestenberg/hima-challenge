@@ -4,18 +4,28 @@
     <title>Punch Clock</title>
     <%= csrf_meta_tags %>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.css">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <div class="main">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.js"></script>
+
       <div class="main--clock-container">
-        <% render "clock" %>
+        <%= render "clock" %>
       </div>
 
       <%= yield %>
-      
+      <%= console %>
+
+      <script type="text/javascript">
+        $(function(){
+          var tz = jstz.determine();
+          Cookies.set('timezone', tz.name(), { path: '/' });
+        });
+      </script>
     </div>
   </body>
 </html>

@@ -8,8 +8,8 @@
     <% clock_events.each do |clock_event| %>
       <div class="main--index--entries--entry">
         <p class="main--index--entries--entry--name"><%= clock_event.name %></p>
-        <p class="main--index--entries--entry--in"><%= clock_event.time_in %></p>
-        <p class="main--index--entries--entry--out"><%= clock_event.time_out %></p>
+        <p class="main--index--entries--entry--in"><%= pretty_time(clock_event.time_in) %></p>
+        <p class="main--index--entries--entry--out"><%= pretty_time(clock_event.time_out) if clock_event.time_out %></p>
       </div>
     <% end %>
   </div>

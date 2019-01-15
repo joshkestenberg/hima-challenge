@@ -10,6 +10,9 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require js.cookie
+//= require jstz
+//= require browser_timezone_rails/set_time_zone
 //= require rails-ujs
 //= require jquery3
 //= require jquery_ujs
