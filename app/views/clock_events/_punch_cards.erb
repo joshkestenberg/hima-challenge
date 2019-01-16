@@ -32,6 +32,10 @@
       });
       $('.main--home--search--input').val('')
       $('[data-submit]').removeClass('main--home--search--button--enabled')
+      $('[data-submit]').prop('disabled', true)
+      $('[data-submit]').submit(function(){
+        event.preventDefault()
+      })
     })
   })
 </script>
