@@ -1,14 +1,7 @@
 $(function(){
-  var animate = '<%= @animate %>'
-  var results = $('.main--home--results')
   var punchCards = '<%= j render partial: "punch_cards", locals: {clock_events: @clock_events} if @clock_events.present? %>'
   var punchButton = '<%= j render partial: "punch_button", locals: {clock_event: @clock_event, punch_out: @punch_out, name: @name} %>'
+  var animate = '<%= @animate %>'
 
-  if (animate === 'true'){
-    results.hide()
-    results.html(punchCards).append(punchButton)
-    results.slideDown(600)
-  } else{
-    results.html(punchCards).append(punchButton)
-  }
+  Callbacks.showResults(punchCards, punchButton, animate)
 })

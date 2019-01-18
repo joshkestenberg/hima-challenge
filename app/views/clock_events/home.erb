@@ -13,18 +13,10 @@
   $(function(){
     $('[data-search-target]').keyup(function(){
       if($(this).val().length > 0){
-        $('[data-submit]').addClass('main--home--search--button--enabled')
-        $('[data-submit]').prop('disabled', false)
+        Callbacks.enableSubmit();
       } else {
-        $('[data-submit]').removeClass('main--home--search--button--enabled')
-        $('[data-submit]').prop('disabled', true)
+        Callbacks.disableSubmit();
       }
     })
-
-    if(!$('[data-submit]').hasClass('main--home--search--button--enabled')){
-      $(this).submit(function(){
-        event.preventDefault()
-      })
-    }
   })
 </script>

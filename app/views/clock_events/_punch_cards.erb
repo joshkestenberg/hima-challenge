@@ -26,16 +26,6 @@
 
 <script type="text/javascript">
   $(function(){
-    $('[data-clear-target]').click(function(){
-      $('.main--home--results').slideUp(600, function(){
-        $('.main--home--results').empty();
-      });
-      $('.main--home--search--input').val('')
-      $('[data-submit]').removeClass('main--home--search--button--enabled')
-      $('[data-submit]').prop('disabled', true)
-      $('[data-submit]').submit(function(){
-        event.preventDefault()
-      })
-    })
+    $('[data-clear-target]').click(Callbacks.clearResults)
   })
 </script>
